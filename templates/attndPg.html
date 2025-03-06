@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+        <head>
+                <title>YBH Attendance System</title>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+                <link rel="stylesheet" href="\static\style.css">
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+              </head>
+<body>
+        <!-- <h1>السَّلامُ عَلَيْكُم {{name}}!</h1> -->
+        <!--NAV BAR-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <label class="navbar-brand">السَّلامُ عَلَيْكُم {{name}}! </label>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu">
+                      <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarMenu">
+                    <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                    <a class="nav-link" href="/dashboard">Dashboard</a>
+                            </li>
+                            <li class="nav-item">
+                                    <a class="nav-link" href="/logout">Logout</a>
+                            </li>
+                    </ul>
+            </div>
+      </nav>
+        <form action='/update/{{className}}' method = "POST">
+        <div class="table-responsive">          
+                <table class="table">
+                        <thead class="thead-dark">
+                          <tr>
+                            <th>SID</th>
+                            <th>Name</th>
+                            <th>Action</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {% for name in namesList %}                          
+                          <tr>
+                            <th>{{name.student_id}}</th>
+                            <td>{{name.student_name}}</td>
+                            <td>
+                                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                    <label class="btn btn-outline-success">
+                                      <input type="radio" name="{{name.student_id}}" value="1"> Present
+                                    </label>
+                                    <label class="btn btn-outline-danger active">
+                                      <input type="radio" name="{{name.student_id}}" value="0" checked> Absent
+                                    </label>
+                                </div>
+                            </td>
+                          </tr>
+                          {% endfor %}
+                        </tbody>
+                      </table>
+              </div>
+              <button type="submit" class="btn btn-primary">Submit Attendance</button>
+            </form>
+
+</body>
+</html>
